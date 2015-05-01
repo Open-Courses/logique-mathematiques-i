@@ -18,3 +18,71 @@ aussi également cherché à simplifier certains calculs. %Exemple des tables de
 Bien que la notion de \textbf{calcul} nous semble évidente, nous avons besoin de
 définir cette notion.
 
+
+\section{Premières définitions}
+
+Posons directement la définition de \textbf{fonctions récursives}:
+
+\begin{definition}
+	Une \textbf{fonction récursive} est une fonction calculable par un
+	algorithme. C'est-à-dire qu'il existe un algorithme qui pour tout $a$ dans
+	l'ensemble de départ de la fonction, calcule son image.
+\end{definition}
+
+Cette définition nous définit la classe des fonctions dont on est capable de
+calculer grace à une méthode de calcul.
+
+Il reste cependant à définir quel méthode de calcul nous utilisons, et bien sûr,
+de définir de manière rigoureuse ce qu'est un algorithme.
+
+D'abord, il nous faut poser ce qu'on entend par \textbf{calcul}. ?????
+
+méthode de calcul ?????
+
+Il existe plusieurs méthodes de calcul:
+
+\begin{itemize}
+	\item Machine de Turing
+	\item $\lambda$-calcul
+	\item Système de Post
+	\item Algorithmes de Markov
+\end{itemize}
+
+\section{Notions de base}
+
+Bien que nous n'ayons pas défini la notion \textit{d'algorithme}, nos
+expériences en informatique nous donne une intuition. Un algorithme est une
+suite finie d'instruction qui pour une certaine entrée, nous donne une sortie.
+
+Nous supposerons par la suite que nous disposons d'une définition précise, et
+définie mathématiquement, et dont notre intuition vérifie la définition.
+Nous pourrons alors utiliser notre expérience pour donner des résultats.
+
+\begin{definition}
+	Soit $X$ un ensemble.
+
+	On dit que $X$ est \textbf{un espace} s'il vérifie les conditions suivantes:
+
+	\begin{enumerate}
+		\item $X$ est infini
+		\item $X \subset A^{*}$ où $A$ est un ensemble fini et $A^{*}$ est
+			l'ensemble des suites finies qui ont comme composantes des éléments
+			de $A$.
+		\item Soit $x \in A^{*}$, alors il existe un algorithme booléen $A_{x}$ tel que
+			$x \in X \equiv A_{x}(x)$ vrai.
+	\end{enumerate}
+\end{definition}
+
+Nous allons alors supposer que certains ensembles soient des \textit{espaces}.
+Les voici:
+
+\begin{enumerate}
+	\item $\naturel$ est un espace.
+	\item Soient deux ensembles $X$ et $Y$ qui sont des espaces resp. sur $A^{*}
+		$ et $B^{*}$, alors $X
+		\cartprod Y$ est un espace.
+	\item Soit $X$ un ensemble qui est un espace, alors l'ensemble des mots
+		finis sur $X$ ie $X^{*}$, est un espace.
+\end{enumerate}
+
+
