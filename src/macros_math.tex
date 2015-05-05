@@ -8,7 +8,6 @@
 \newcommand{\complex}{\mathbb{C}}
 %-------------------------------------------------------------------------------
 
-
 %Logical
 \def\implies{\Rightarrow}
 \def\equiv{\Leftrightarrow}
@@ -19,13 +18,35 @@
 \def\inter{\cap} %Intersection
 \newcommand{\comp}[1]{#1^{c}} %Complementary
 \def\cartprod{\cross}
-\newcommand{\card}[1]{|#1|}
+\newcommand{\cardinal}[1]{\#(#1)}
+\newcommand{\card}[1]{\cardinal{#1}}
 %-------------------------------------------------------------------------------
 
 %Topology
 \def\interior{\mathring}
 \def\adh{\overline}
 %-------------------------------------------------------------------------------
+
+%Algebra
+
+% Group theory
+
+\newcommand{\ordergroup}[1]{|#1|}
+\newcommand{\GSautomorphismDef}[2]{Aut_{\text{#1}}(#2)}
+
+% Field theory
+
+%extensionDegree
+\newcommand{\extensionDegree}[2]{[#1, #2]}
+
+%plongement
+\newcommand{\plongement}[3]{Hom_{#1}(#2, #3)}
+
+%Galois group
+\newcommand{\galoisGroup}[2]{GL(#1, #2)}
+% Spectrum Theory
+\newcommand{\spectrum}[1]{\sigma(#1)}
+\newcommand{\resolvant}[1]{\rho(#1)}
 
 \def\Ldeux{\mathcal{L}^{2}}
 \def\Ldeuxstar{(\mathcal{L}^{2})^{*}}
@@ -36,10 +57,14 @@
 %		#3 : set definition
 \newcommand{\GSsequence}[3]{(#1_{#2})_{#2 \in #3}}
 
-%GSset :
+%GSsetDef :
+%		#1 : set elements
+\newcommand{\GSset}[1]{\left\{ #1 \right\}}
+
+%GSsetDef :
 %		#1 : global set
 %		#2 : condition
-\newcommand{\GSset}[2]{\left\{#1 \, | \, #2 \right\}}
+\newcommand{\GSsetDef}[2]{\left\{#1 \, | \, #2 \right\}}
 
 %GSprodSet :
 %		#1 : indice
@@ -60,6 +85,8 @@
 
 %Analysis :
 
+% conjuguate
+\def\conjuguate{\overline}
 %GSApplication :
 %       #1 : name funtion
 %       #2 : begin set
@@ -68,7 +95,7 @@
 
 %GSnorme : Deprecated --> \norm
 %		#1 : elements which norme is applied on
-\newcommand{\GSnorme}[1]{\norm{#1}} 
+\newcommand{\GSnorme}[1]{\norm{#1}}
 
 %GSnormeDef :
 %		#1 : elements which norme is applied on
@@ -89,6 +116,7 @@
 \newcommand{\GSbidual}[1]{#1^{**}}
 
 \newcommand{\GSunitBoule}[1]{\mathcal{B}_{#1}}
+\newcommand{\GSclosedUnitBoule}[1]{\adh{\GSunitBoule{#1}}}
 
 \newcommand{\GSweakTopo}[1]{\sigma(#1, #1^{*})}
 \newcommand{\GSpreweakTopo}[1]{\sigma(#1^{*}, #1)}
@@ -104,6 +132,19 @@
 
 %\GScontinueHomo
 \newcommand{\GScontinueHomo}[2]{\mathcal{L}(#1, #2)}
+
+%\GScompactEndo
+\newcommand{\GScompactEndo}[1]{\mathcal{K}(#1)}
+
+%\GScompactHomo
+\newcommand{\GScompactHomo}[2]{\mathcal{K}(#1, #2)}
+
+\newcommand{\GSfiniteRankHomo}[2]{\mathcal{R}_{f}(#1, #2)}
+\newcommand{\GSfiniteRankEndo}[1]{\mathcal{R}_{f}(#1)}
+
+\newcommand{\GSisomorphism}[1]{Isom(#1)}
+\newcommand{\GSisomorphismHomo}[2]{Isom(#1, #2)}
+\newcommand{\GSisometryEndo}[1]{Isom(#1)}
 %-------------------------------------------------------------------------------
 
 %Model theory
@@ -140,6 +181,9 @@
 %Hilbert space
 \def\Hilbert{\mathcal{H}}
 \newcommand{\GSortho}[1]{#1^{\perp}}
+\def\GSid{\cong}
+\newcommand{\dotprod}[2]{\bra{#1}\ket{#2}}
+\newcommand{\adjointe}[1]{#1^{*}}
 %-------------------------------------------------------------------------------
 
 %Group representions
