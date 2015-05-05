@@ -19,7 +19,6 @@
 \newcommand{\comp}[1]{#1^{c}} %Complementary
 \def\cartprod{\cross}
 \newcommand{\cardinal}[1]{\#(#1)}
-\newcommand{\card}[1]{\cardinal{#1}}
 %-------------------------------------------------------------------------------
 
 %Topology
@@ -31,6 +30,7 @@
 
 % Group theory
 
+\def\isomorph{\simeq}
 \newcommand{\ordergroup}[1]{|#1|}
 \newcommand{\GSautomorphismDef}[2]{Aut_{\text{#1}}(#2)}
 
@@ -87,8 +87,15 @@
 
 % conjuguate
 \def\conjuguate{\overline}
-%GSApplication :
-%       #1 : name funtion
+
+% miLength: multi-indice length
+\newcommand{\miLength}[1]{|#1|}
+
+% segment: all points between two points given
+\newcommand{\segment}[2]{S(#1, #2)}
+
+%GSfunction :
+%       #1 : name function
 %       #2 : begin set
 %       #3 : end set
 \newcommand{\GSfunction}[3]{#1 : #2 \rightarrow #3}
@@ -106,6 +113,9 @@
 %		#1 : vectorial space
 %		#2 : \GSnorme[Def] with dot as element.
 \newcommand{\GSnormedSpace}[2]{(#1, #2)}
+
+%Identification
+\def\identification{\simeq}
 
 %GSdual
 %		#1 : vectorial space
@@ -126,6 +136,7 @@
 
 %GShomomorphisme
 \newcommand{\GShomomorphisme}[2]{Hom(#1, #2)}
+\newcommand{\GShomomorphismeDef}[3]{Hom_{#1}(#2, #3)}
 
 %GScontinueEndo
 \newcommand{\GScontinueEndo}[1]{\mathcal{L}(#1)}
