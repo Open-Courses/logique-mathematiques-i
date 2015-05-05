@@ -10,22 +10,22 @@
 \end{definition}
 
 \begin{definition}
-	Le cardinal d'un ensemble $A$, noté $\card{A}$, est le plus petit ordinal
+	Le cardinal d'un ensemble $A$, noté $\cardinal{A}$, est le plus petit ordinal
 	$\alpha$ tel que $\alpha$ est en bijection avec $A$.
 \end{definition}
 
 \begin{definition}
 	Soit $A$ et $B$ deux ensembles. On dit que \textbf{le cardinal de $A$ est
-	plus petit (resp. plus grand) que le cardinal de $B$}, noté $\card{A} \leq
-	\card{B}$ (resp $\card{A} \geq \card{B}$) s'il existe une fonction
+	plus petit (resp. plus grand) que le cardinal de $B$}, noté $\cardinal{A} \leq
+	\cardinal{B}$ (resp $\cardinal{A} \geq \cardinal{B}$) s'il existe une fonction
 	$\GSfunction{f}{A}{B}$ injective (resp. surjective).
 \end{definition}
 
 \begin{theorem} [Cantor-Schroder-Bernstein]
 	Soit $A$ et $B$ deux ensembles. On a:
 
-	$(\card{A} \leq \card{B}$ et $\card{A} \geq \card{B}) \equiv \card{A} =
-	\card{B}$.
+	$(\cardinal{A} \leq \cardinal{B}$ et $\cardinal{A} \geq \cardinal{B}) \equiv \cardinal{A} =
+	\cardinal{B}$.
 	\label{thm:csb}
 \end{theorem}
 \begin{definition}
@@ -58,7 +58,7 @@
 \begin{theorem}
 	\label{thm:cartesian_product_denombrable_infini_infini}
 	Soit $A$ et $D$ deux ensembles infinis tel que $D$ est \textit{dénombrable}.
-	Alors $\card{A \cartprod D} = \card{A}$.
+	Alors $\cardinal{A \cartprod D} = \cardinal{A}$.
 \end{theorem}
 
 \ifdefined\outputproof
@@ -67,12 +67,12 @@
 \end{proof}
 \fi
 
-En particulier, on a donc que $\card{\naturel \cartprod \naturel} = \card{\naturel}$
+En particulier, on a donc que $\cardinal{\naturel \cartprod \naturel} = \cardinal{\naturel}$
 
 \begin{corollary}
 	\label{cor:union_infini_set}
-	Soit $A$ et $B$ deux ensembles tel que $B$ est infini et $\card{A} \leq \card{B}$.
-	Alors $\card{A \union B} = \card{B}$.
+	Soit $A$ et $B$ deux ensembles tel que $B$ est infini et $\cardinal{A} \leq \cardinal{B}$.
+	Alors $\cardinal{A \union B} = \cardinal{B}$.
 \end{corollary}
 
 \ifdefined\outputproof
@@ -82,7 +82,7 @@ En particulier, on a donc que $\card{\naturel \cartprod \naturel} = \card{\natur
 \fi
 
 \begin{theorem}
-	Soit $A$ un ensemble infini. Alors $\card{A \cartprod A} = \card{A}$.
+	Soit $A$ un ensemble infini. Alors $\cardinal{A \cartprod A} = \cardinal{A}$.
 	\label{thm:card_cart_product_infini}
 \end{theorem}
 
@@ -93,8 +93,8 @@ En particulier, on a donc que $\card{\naturel \cartprod \naturel} = \card{\natur
 \fi
 
 \begin{corollary}
-	Soit $A$ un ensemble infini et $n \in \naturel$. Alors $\card{A^{n}} =
-	\card{A}$.
+	Soit $A$ un ensemble infini et $n \in \naturel$. Alors $\cardinal{A^{n}} =
+	\cardinal{A}$.
 \end{corollary}
 
 \ifdefined\outputproof
@@ -105,7 +105,7 @@ En particulier, on a donc que $\card{\naturel \cartprod \naturel} = \card{\natur
 
 \begin{corollary}
 	Soit $A$ un ensemble infini et $\Omega$ l'ensemble des parties
-	\textit{finies} de $A$. Alors $\card{A \cartprod \Omega} = \card{A}$.
+	\textit{finies} de $A$. Alors $\cardinal{A \cartprod \Omega} = \cardinal{A}$.
 \end{corollary}
 
 \ifdefined\outputproof
@@ -116,7 +116,7 @@ En particulier, on a donc que $\card{\naturel \cartprod \naturel} = \card{\natur
 
 \begin{corollary}
 	Soit $A$ un ensemble infini et $\Omega$ l'ensemble des suites
-	\textit{finies} de $A$. Alors $\card{A \cartprod \Omega} = \card{A}$.
+	\textit{finies} de $A$. Alors $\cardinal{A \cartprod \Omega} = \cardinal{A}$.
 \end{corollary}
 
 \ifdefined\outputproof

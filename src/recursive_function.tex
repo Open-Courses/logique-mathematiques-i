@@ -79,10 +79,89 @@ Les voici:
 \begin{enumerate}
 	\item $\naturel$ est un espace.
 	\item Soient deux ensembles $X$ et $Y$ qui sont des espaces resp. sur $A^{*}
-		$ et $B^{*}$, alors $X
-		\cartprod Y$ est un espace.
+		$ et $B^{*}$, alors $X \cartprod Y$ est un espace sur $A^{*} \union
+		B^{*} \union \GSset{\xi}$ où $\xi$ est un symbole n'appartenant à
+		aucun des alphabets $A$ et $B$.
 	\item Soit $X$ un ensemble qui est un espace, alors l'ensemble des mots
 		finis sur $X$ ie $X^{*}$, est un espace.
 \end{enumerate}
 
+Comme nous faisons pour n'importe quelle structure sur un ensemble, nous allons
+définir les morphismes entre ces espaces. Cependant, pour garder une intuition
+informatique, nous allons appelé ces morphismes des \textbf{fonctions
+récursives}. Les fonctions récursives doivent transporter la structure des
+éléments, ce qui motive la définition suivante.
 
+\begin{definition}
+	Soient $X$ et $Y$ deux espaces.
+	Une fonction $\GSfunction{f}{X}{Y}$ est dite \textbf{récursive} s'il existe
+	un algorithme $A$ tel que pour tout $x \in X$, $A$ calcule $F(x)$.
+\end{definition}
+
+Rappelons que nous n'avons pas défini précisément la notion d'algorithme.
+Cependant, nous avons supposé que nous en avons défini une, et que cette
+définition recouvre toutes les opérations que nous pouvons réaliser dans un
+langage de programmation.
+
+Donnons quelques exemples de \textit{fonctions récursives}.
+
+\begin{exemple}
+	\begin{itemize}
+		\item Prenons $A = \naturel \cartprod \naturel$, et $B = \naturel$.
+			Alors l'addition usuelle ($\GSfunction{+}{\naturel \cartprod
+			\naturel}{\naturel}$) et la multiplication usuelle
+			($\GSfunction{.}{\naturel \cartprod \naturel}{\naturel}$) sont des
+			fonctions récursives.
+		\item Soit $X$ un espace, alors l'identité $\GSfunction{Id_{X}}{X}{X}$
+			est une fonction récursive.
+		\item Soient $X$ et $Y$ deux espaces. Alors les fonctions de projections
+			sur $X$ et sur $Y$ sont des fonctions récursives.
+		\item Soit $X$ un espace, et prenons $X^{*}$ l'ensemble des mots finis
+			sur $X$.
+			Soit $\GSfunction{l}{X^{*}}{\naturel}$ la fonction qui calcule la
+			longueur du mot. Alors $l$ est une fonction récursive.
+	\end{itemize}
+\end{exemple}
+
+Prenons maintenant deux fonctions récursives $f$ et $g$. Si nous faisons le
+parallèle avec les structures de groupe ou d'espaces vectoriels, nous savons que
+la composition que la composition de deux morphismes est encore un morphisme.
+Nous obtenons alors le même résultat pour les fonctions récursives.
+
+\begin{proposition}
+	Soient $X$, $Y$ et $Z$ trois espaces.
+	Soient $\GSfunction{f}{X}{Y}$ et $\GSfunction{g}{Y}{Z}$ deux fonctions
+	récursives.
+
+	Alors $\GSfunction{g \circ f}{X}{Z}$ est aussi une fonction récursive.
+\end{proposition}
+
+\ifdefined\outproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+Nous pouvons alors de la même manière que dans les structures connues, définir
+les \textit{isomorphismes} entre les espaces.
+Rappelons que si $f$ est un morphisme bijectif, il n'est pas toujours vrai que
+$f^{-1}$ soit aussi un morphisme: cela dépend des structures. En effet, pour les
+structure de groupe, $f^{-1}$ est également un morphisme. Or, pour les
+applications continues (qui sont les morphismes des structures topologiques),
+ce n'est pas toujours vrai.
+
+Rappelons que la notion de bijectivité ne demande aucune structure, celle-ci
+n'est qu'ensembliste.
+
+\begin{definition}
+	Soient $X$ et $Y$ deux espaces.
+	Soit $\GSfunction{f}{X}{Y}$ une fonction récursive bijective tel que
+	$\GSfunction{f^{-1}}{Y}{X}$ est aussi récursive.
+	Alors on dit que $f$ est \textbf{un isomorphisme}.
+\end{definition}
+
+Nous arrivons alors à un théorème très surprenant concernant les espaces.
+
+Revenons aux structures algébriques que nous connaissons, comme celle de groupe.
+Nous savons que pour deux groupes donnés, il n'existe pas nécessairement
+d'isomorphismes entre les deux.
