@@ -3,50 +3,50 @@
 % Références :
 %	- Boffa
 
-\section{Historique}
+%\section{Historique}
 
-Les mathématiques ont comme base le calcul. % Provenance du mot calcul
-Au fil des années, les méthodes de calculs ont évoluées, et les mathématiques ont
-évoluées en diverses branches, comme l'algèbre, l'analyse, les probabilités, les
-statistiques. Le calcul est alors devenue une branche des mathématiques, appelée
-l'arithmétique.
+%Les mathématiques ont comme base le calcul. % Provenance du mot calcul
+%Au fil des années, les méthodes de calculs ont évoluées, et les mathématiques ont
+%évoluées en diverses branches, comme l'algèbre, l'analyse, les probabilités, les
+%statistiques. Le calcul est alors devenue une branche des mathématiques, appelée
+%l'arithmétique.
 
-Au fur et à mesure des années, on a cherché des méthodes automatiques de calcul.
-On a cherché à éviter de répéter, encore et encore, les mêmes calculs. On a
-aussi également cherché à simplifier certains calculs. %Exemple des tables de log.
+%Au fur et à mesure des années, on a cherché des méthodes automatiques de calcul.
+%On a cherché à éviter de répéter, encore et encore, les mêmes calculs. On a
+%aussi également cherché à simplifier certains calculs. %Exemple des tables de log.
 
-Bien que la notion de \textbf{calcul} nous semble évidente, nous avons besoin de
-définir cette notion.
+%Bien que la notion de \textbf{calcul} nous semble évidente, nous avons besoin de
+%définir cette notion.
 
 
-\section{Premières définitions}
+%\section{Premières définitions}
 
-Posons directement la définition de \textbf{fonctions récursives}:
+%Posons directement la définition de \textbf{fonctions récursives}:
 
-\begin{definition}
-	Une \textbf{fonction récursive} est une fonction calculable par un
-	algorithme. C'est-à-dire qu'il existe un algorithme qui pour tout $a$ dans
-	l'ensemble de départ de la fonction, calcule son image.
-\end{definition}
+%\begin{definition}
+	%Une \textbf{fonction récursive} est une fonction calculable par un
+	%algorithme. C'est-à-dire qu'il existe un algorithme qui pour tout $a$ dans
+	%l'ensemble de départ de la fonction, calcule son image.
+%\end{definition}
 
-Cette définition nous définit la classe des fonctions dont on est capable de
-calculer grace à une méthode de calcul.
+%Cette définition nous définit la classe des fonctions dont on est capable de
+%calculer grace à une méthode de calcul.
 
-Il reste cependant à définir quel méthode de calcul nous utilisons, et bien sûr,
-de définir de manière rigoureuse ce qu'est un algorithme.
+%Il reste cependant à définir quel méthode de calcul nous utilisons, et bien sûr,
+%de définir de manière rigoureuse ce qu'est un algorithme.
 
-D'abord, il nous faut poser ce qu'on entend par \textbf{calcul}. ?????
+%D'abord, il nous faut poser ce qu'on entend par \textbf{calcul}. ?????
 
-méthode de calcul ?????
+%méthode de calcul ?????
 
-Il existe plusieurs méthodes de calcul:
+%Il existe plusieurs méthodes de calcul:
 
-\begin{itemize}
-	\item Machine de Turing
-	\item $\lambda$-calcul
-	\item Système de Post
-	\item Algorithmes de Markov
-\end{itemize}
+%\begin{itemize}
+	%\item Machine de Turing
+	%\item $\lambda$-calcul
+	%\item Système de Post
+	%\item Algorithmes de Markov
+%\end{itemize}
 
 \section{Notions de base}
 
@@ -164,4 +164,461 @@ Nous arrivons alors à un théorème très surprenant concernant les espaces.
 
 Revenons aux structures algébriques que nous connaissons, comme celle de groupe.
 Nous savons que pour deux groupes donnés, il n'existe pas nécessairement
-d'isomorphismes entre les deux.
+d'isomorphismes entre les deux. Donc, tous les groupes ne sont pas isomorphes.
+Par exemple, $\integer/2\integer$ et $\integer/4\integer$ ne sont pas
+isomorphes.
+
+\begin{theorem}
+	\label{theorem:isomorphism_theorem}
+	Tous les espaces sont isomorphes.
+\end{theorem}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\begin{definition}
+	Soit $X$ un espace. Soit $E \subseteq X$.
+
+	On dit que \textbf{récursif} si la fonction caractéristique de $E$ sur $X$
+	est récursive, c'est-à-dire s'il existe un algorithme qui, pour tout élément
+	$x$ de $X$, détermine $x \in E$ ou non.
+\end{definition}
+
+
+\section{Fonctions récursives primitives}
+
+Pour certaines structures, comme les espaces vectoriels ou les groupes, nous
+pouvons, sous certaines conditions, trouver des éléments qui génèrent tout
+l'espace vectoriel (les bases) ou tout le groupe (générateurs).
+
+Pour les espaces vectoriels de dimension finie, nous savons qu'il existe une
+suite finie d'élément de l'espace tel que chaque élément est définissable par
+ces éléments et grace au \textit{principe des combinaisons linéaires}.
+
+En est-il de même pour l'ensemble des fonctions récursives
+$\recursiveFunctionsSet$ ? Pouvons-nous trouver des fonctions récursives 'de
+base' et un ou plusieurs principes permmettant de \textit{générer} toutes les
+autres fonctions récursives ?
+
+Dans ce but, nous allons définir les fonctions \textbf{récursives primitives
+(RP)} ainsi que le principe de composition et le principe de récurrence.
+L'ensemble des fonctions constructibles grace à ces axiomes sera noté
+$\primitiveRecursiveFunctionSet$.
+
+Rappelons que comme tous les espaces sont isomorphes, nous pouvons sans perte de
+généralité travailler avec $\naturel^{k}$, $k$ étant un naturel strictement
+positif. Nous étudierons alors les fonctions
+$\GSfunction{f}{\naturel^{k}}{\naturel}$.
+
+\vspace{5mm}
+
+La question qu'on se posera sera alors: \textbf{est-ce que
+$\primitiveRecursiveFunctionSet = \recursiveFunctionsSet$ ?}
+
+\vspace{5mm}
+
+Commençons par définir 'les vecteurs de bases'.
+
+\begin{itemize}
+	\item \textbf{La fonction annulatrice ou nulle} $NULL : \naturel \rightarrow \naturel : x \rightarrow 0$
+		est RP.
+	\item \textbf{La fonction successeur} $SUCC : \naturel \rightarrow \naturel : x \rightarrow x +
+		1$ est RP
+	\item Soit $k \in \naturel^{> 0}$. Soit $1 \leq l \leq k$. \textbf{La
+			fonction de $k$-projection sur la $l$-ième composante} $P_{k, l} :
+			\naturel^{k}
+		\rightarrow \naturel : (x_{1}, \cdots, x_{k}) \rightarrow x_{l}$ est RP.
+\end{itemize}
+
+\vspace{5mm}
+
+Nous allons aussi donner deux procédés permettant, à partir de deux fonctions
+RP, de construires d'autres fonctions RP.
+
+\begin{definition} [Principe de composition]
+	Soient $\GSfunction{F}{\naturel^{l}}{\naturel}$,
+	$\GSfunction{F_{i}}{\naturel^{k}}{\naturel}$ ($1 \leq i \leq l$) des
+	fonctions RP.
+	Alors la fonction $\GSfunction{H}{\naturel^{k}}{\naturel} : (x_{1}, \cdots,
+	x_{k}) \rightarrow F(F_{1}(x_{1}, \cdots, x_{k}), \cdots, F_{l}(x_{1},
+	\cdots, x_{k}))$ est RP.
+\end{definition}
+
+\begin{definition} [Principe de récurrence]
+	Soient $\GSfunction{F}{\naturel^{k}}{\naturel}$ et
+	$\GSfunction{G}{\naturel^{k + 2}}{\naturel}$ deux fonctions RP.
+	Alors la fonction $\GSfunction{H}{\naturel^{k + 1}}{\naturel}$ définie comme:
+
+	\begin{itemize}
+		\item $H(x_{1}, \cdots, x_{k}, 0) = F(x_{1}, \cdots, x_{k})$
+		\item $H(x_{1}, \cdots, x_{k}, x + 1) = G(x_{1}, \cdots, x_{k}, x,
+			H(x_{1}, \cdots, x_{k}, x))$
+	\end{itemize}
+	est RP.
+\end{definition}
+
+Nous pouvons montrer que, dans le principe de composition et de récurrence, il
+n'est pas nécessaire que les fonctions aient le même domaine (ie dépendent du
+même nombre de paramètres). Cela découle du principe de composition et de
+l'hypothèse que les fonctions projections soient RP.
+
+Remarquons un point essentiel: les fonctions RP actuellement définies sont
+toutes totales. En effet, les principes de construction conservent la propriété
+d'être totale, et les fonctions RP de base sont totales.
+
+Nous pouvons alors déduire directement que $\primitiveRecursiveFunctionSet \neq
+\recursiveFunctionsSet$ car nous savons qu'il existe des fonctions récursives
+qui ne sont pas totales.
+
+Cependant, il existe tout de même un lien entre $\primitiveRecursiveFunctionSet$
+et $\recursiveFunctionsSet$. En effet, toutes fonctions récursives primitives
+est récursive.
+
+\begin{proposition}
+	$\primitiveRecursiveFunctionSet \subsetneq \recursiveFunctionsSet$.
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+	Les fonctions de bases sont récursives. De plus, nous avons vu que la
+	composition de fonctions récursives est encore récursive. Il nous reste à
+	montrer que le principe de récursion conservent la structure de fonctions
+	récursives. Nous pouvons l'accepter sans aucun doute vu notre utilisation
+	des algorithmes récursifs en programmation.
+\end{proof}
+\fi
+
+Donnons maintenant quelques exemples de fonctions récursives primitives. Ces
+fonctions devront être totales récursives en particulier.
+
+\begin{exemple}
+	\begin{itemize}
+		\item Exemples donnés par Boffa.
+		\item La fonctions soustraction est RP (si on définit $0 - 1 = 0$)
+		\item La plupart des fonctions que nous utilisons en arithmétique sont
+			RP.
+		\item Les boucles, les conditions et les comparaisons peuvent être
+			implémentées grace aux fonctions RP. (voir Cutland)
+	\end{itemize}
+\end{exemple}
+
+Nous souhaitons atteindre but qui est de définir des principes de bases et des
+fonctions de base permettant de décrire \textbf{toutes} les fonctions
+récursives.
+
+Vu que la construction actuelle des fonctions RP ne permet pas de construire
+toutes les fonctions récursives car nous ne pouvons définir les fonctions
+récursives partielles, nous souhaiterions rajouter un principe qui construit, en
+particulier, les fonctions partielles.
+
+Nous montrerons qu'en fait, toutes les fonctions totales récursives ne sont pas
+RP. On construira la fonction d'Ackermann.
+
+Nous allons introduire de la principe de minimalisation.
+
+\begin{definition} [Principe de minimalisation ou principe M]
+	Soit $\GSfunction{F}{\naturel^{k + 1}}{\naturel}$ une fonction RP.
+
+	Alors on définit
+	$G : \naturel^{k} \rightarrow \naturel$ tel que
+
+	$G(x_{1}, \cdots, G_{k})$ = le plus petit $y \in \naturel$ tel que $f(x_{1}, \cdots, x_{k}, y) = 0$
+
+	On note $G(x_{1}, \cdots, x_{k}) = \mu y(F(x_{1}, \cdots, x_{k}, y) = 0)$.
+
+	$G$ est appelée \textbf{la fonction de minimalisation de $F$.}
+
+	Les fonctions récursives constructibles à partir de
+	$\primitiveRecursiveFunctionSet$ et du principe de minimalisation sont
+	appelées \textbf{fonctions $\mu$-récursives}, et la classe des fonctions
+	$\mu$-recursives est noté $\muRecursiveFunctionSet$.
+\end{definition}
+
+\begin{remarque}
+	La fonction de minimalisation d'une fonction $RP$ n'est pas nécessairement
+	totale. En effet, on pourrait avoir que $F(x_{1}, \cdots, x_{k}, y)$ ne
+	s'annule jamais. La fonction $\mu$ sera alors indéterminée pour cette entrée
+	là. Un exemple est la fonction
+	successeur.
+	La fonction $\mu$ est donc partielle !
+\end{remarque}
+
+\begin{question}
+	Est-ce que si on se restreint aux fonctions $\mu$-récursives, alors la
+	classe $\muRecursiveFunctionSet$ est exactement la classe des fonction
+	primitives récursives $\primitiveRecursiveFunctionSet$ ?
+
+	En d'autres termes, est-ce que le principe de minimalisation ne permet que
+	de construire des nouvelles fonctions récursives partielles ?
+\end{question}
+
+Nous venons donc de trouver un principe nous permettant d'agrandir notre classe
+de fontions RP et qui permet de définir des fonctions partielles. Mais est-ce
+necessaire pour pouvoir construire toutes les fonctions récursives ?
+
+Pour le savoir, nous allons passer par un théorème important.
+
+Nous allons introduire une notation permettant de comparer les fonctions
+récursives.
+
+\begin{definition}
+	Soit $F$ et $G$ deux fonctions récursives de $\naturel^{k}$ dans $\naturel$.
+	On note $F \simeq G$ si $F$ et $G$ ont même domaine et sont égales sur
+	celui-ci, et $F$ est indéterminée en $x$ ssi $G$ l'est aussi. Nous étendons
+	également la notation pour l'évalutation.
+\end{definition}
+
+Bien qu'on ait besoin d'introduire un nouveau principe pour construire des
+fonctions partielles, les fonctions primitives récursives constructibles sans le
+principe de minimalisation jouent un role important.
+
+\begin{theorem} [Forme normale de Kleene]
+	\label{theorem:kleene_normal_form}
+	Soit $k \in \naturel^{> 0}$.
+	Il existe $\GSfunction{T}{\naturel^{k + 2}}{\naturel}$ et
+	$\GSfunction{U}{\naturel}{\naturel}$ deux fonctions primitives récursives
+	(ie $T, U \in \primitiveRecursiveFunctionSet$) tel que pour toute fonction
+	$\GSfunction{F}{\naturel^{k}}{\naturel}$ $\mu$ récursive (ie $F \in
+	\muRecursiveFunctionSet$), il existe un entier $e \in \naturel$ tel que pour
+	tout $(x_{1}, \cdots, x_{k}) \in \naturel^{k}$
+
+	\begin{equation*}
+		F(x_{1}, \cdots, x_{k}) \simeq U(\mu y (T(y, e, x_{1}, \cdots, x_{k})))
+	\end{equation*}
+
+	$e$ est appelé \textbf{index} ou \textbf{nombre de Godel}.
+\end{theorem}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+Le théorème de la forme normale de Kleene nous dit que toute fonction
+$\mu$-récursives peut-être construite à partir d'une seule application du
+principe de minimalisation et uniquement de deux fonctions primitives
+récursives. On est alors amené au corollaire suivant:
+
+\begin{corollary}
+	Chaque fonction partielle récursive est constructible à partir des fonctions de bases
+	et aux principes de composition, de récurrrence et de minimalisation.
+\end{corollary}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\begin{theorem}
+	Nous avons $\muRecursiveFunctionSet = \recursiveFunctionsSet$.
+\end{theorem}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\section{Opérateurs}
+
+Nous savons que le nombre de programmes est dénombrables: on peut alors les
+numéroter. Posons $\phi$ la fonction qui a $n \in \naturel$ associé $\phi(n) =
+\phi_{n}$ le $n$-ième programme.
+
+Nous allons définir ce qu'est un point fixe pour $\phi$.
+
+
+\begin{definition}
+	Soit $F$ une fonction. On dit que $e \in \naturel$ est un point fixe de $F$
+	si $\phi_{e} \simeq \phi_{F(e)}$, c'est-à-dire que $e$ et $F(e)$ décrivent
+	le même programme.
+\end{definition}
+
+On note $\mathcal{F}_{k}$ ($k \in \naturel^{> 0}$) les fonctions récursives
+partielle de $\naturel^{k}$ dans $\naturel$.
+
+\begin{definition}
+	Soient $k, l \in \naturel^{> 0}$.
+	\textbf{Un opérateur} est une fonction
+	$\GSfunction{\phi}{\mathcal{F}_{k}}{\mathcal{F}_{l}}$ totale (c'est-à-dire que son domaine de définition est tout
+	$\mathcal{F}_{k}$).
+
+	On dit que $\phi$ est \textbf{continu} si
+
+	\begin{equation*}
+		\forall F \in \mathcal{F}_{k}, \phi(F) = \displaystyle \bigcup_{\substack{f \subseteq
+			F \\ f \text{ finie}}} \phi(f)
+	\end{equation*}
+\end{definition}
+
+La définition nous permet directement de montrer les propositions suivantes:
+
+\begin{proposition}
+	Soit $\GSfunction{\phi}{\mathcal{F}_{k}}{\mathcal{F}_{k}}$ un opérateur
+	continu.
+
+	Alors:
+
+	\begin{itemize}
+		\item $\forall F_{1} \subseteq F_{2} \in {\mathcal{F}_{k}}$,
+			$\phi(F_{1}) \subseteq \phi(F_{2})$
+		\item $\forall \GSsequence{F}{i}{I}$, $\displaystyle \phi(\bigcup_{i \in I} F_{i}) =
+			\bigcup_{i \in I} \phi(F_{i})$.
+	\end{itemize}
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\begin{theorem}
+	\label{theorem:plus_petit_point_fixe}
+	Soit $\gamma$ est un opérateur continu de $\mathcal{F}_{k}$ dans
+	$\mathcal{F}_{k}$.
+
+	Alors $Fix(\gamma) = \displaystyle \bigcup_{i \in \naturel} \gamma^{i}(\emptyset)$ est le
+	plus petit point fixe de $\gamma$.
+\end{theorem}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+Avant de donner un exemple, montrons une proposition qui nous servira pour le
+futur exemple.
+
+En analyse fonctionnelle, nous savons que toute fonction constante est
+continue. Est-ce le cas pour notre définition sur les opérateurs ?
+
+\begin{proposition}
+	Soient $k, l > 0$ deux naturels.
+	Soit $\GSfunction{\phi}{\mathcal{F}_{k}}{\mathcal{F}_{l}}$ un opérateur
+	constant, c'est-à-dire que pour tout $F \in \mathcal{F}_{k}$, $\phi(F) = A$
+	où $A \in \mathcal{F}_{l}$.
+
+	Alors $\phi$ est continue. De plus, $Fix(\phi) = A$.
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+Donnons maintenant un exemple d'opérateur continu, et calculons son point fixe.
+
+Prenons l'opérateur constant $\phi : \mathcal{F}_{2} \rightarrow
+\mathcal{F}_{2}$ de constante $A : \mathcal{F}_{2} \rightarrow \naturel$ définie
+par:
+
+\begin{itemize}
+	\item $A(0, y) = y + 1$
+	\item $A(x + 1, 0) = A(x, 1)$
+	\item $A(x + 1, y + 1) = A(x, A(x + 1, y))$
+\end{itemize}
+
+Cet opérateur est total et continu, et son point fixe est-lui même. Son point
+fixe est même une fonction totale. Cette fonction est très importante.
+
+\begin{definition}
+	\textbf{La fonction d'Ackermann} $A$ est l'unique \textit{fonction totale}
+	de $\naturel^{2}$ dans $\naturel$ définie par
+	\begin{itemize}
+		\item $A(0, y) = y + 1$
+		\item $A(x + 1, 0) = A(x, 1)$
+		\item $A(x + 1, y + 1) = A(x, A(x + 1, y))$
+	\end{itemize}
+\end{definition}
+
+Nous souhaitons savoir si $A$ est récursive, et si elle est RP.
+
+\begin{definition}
+	Soit $\phi$ un opérateur de $\mathcal{F}_{k}$ dans $\mathcal{F}_{l}$ où $k,
+	l$ sont deux entiers strictement positifs.
+
+	On dit que $\phi$ est \textbf{récursif} s'il est continu et si pour toute fonction finie $f \in
+	\mathcal{F}_{k}$, et pour tout $(x_{1}, \cdots, x_{k})$, l'application de
+	$\mathcal{F}_{l}$ obtenue en évaluant $\phi(f)$ en $(x_{1}, \cdots, x_{k})$ (ie
+	$\phi(f)(x_{1}, \cdots, x_{k})$) est récursive.
+\end{definition}
+
+Donnons un lemme qui permettra de mieux travailler avec la définition
+d'opérateur récursif.
+
+\begin{lemma}
+	Soient $k, l \in \naturel^{> 0}$.
+	Soit $\GSfunction{\phi}{\mathcal{F}_{k}}{\mathcal{F}_{l}}$ un opérateur.
+
+	Alors $\phi$ est récursif ssi il existe une fonction totale récursive $H(n)$
+	tel que $\phi([n]^{(k)}) = H(n)^{(l)}$.
+\end{lemma}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+On est alors mené au \textit{théorème de récursion de Kleene}:
+
+\begin{theorem}
+	\label{theorem:kleene_recursion}
+	Soit $k \in \naturel^{> 0}$.
+	Soit $\GSfunction{\phi}{\mathcal{F}_{k}}{\mathcal{F}_{k}}$ un opérateur
+	récursif.
+
+	Alors le plus petit point fixe $Fix(\phi)$ de $\phi$ est une fonction partielle récursive.
+\end{theorem}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\begin{corollary}
+	\label{corollary:ackermann_total_recursive}
+	La fonction d'Ackermann $A$ est une fonction totale récursive.
+\end{corollary}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+Cependant, nous allons montrer que la fonction d'Ackermann n'est pas RP. Nous
+aurons besoin d'une liste de propriétés de $A$.
+
+\begin{proposition}
+	\begin{itemize}
+		\item $\forall x, y \in \naturel$, $A(x, y) > y$.
+		\item $A$ est strictement croissante en sa deuxième variable.
+		\item $\forall x, y \in \naturel$, $A(x, y + 1) \leq A(x + 1, y)$ (la
+			fonction grandit plus vite en sa première variable).
+		\item $A$ est strictement croissante en sa première variable.
+		\item Pour tout $k > 0$ et pour toute fonction
+			$\GSfunction{F}{\naturel^{k}}{\naturel}$ RP, il existe $m \in \naturel$
+			tel que $F(x_{1}, \cdots, x_{k}) < A(m, max(x_{1}, \cdots, x_{k}))$.
+			En d'autre terme, toute fonction RP peut être majorée par $A$, ou
+			encore autrement dit, $A$ est plus grande que toute fonction $RP$.
+		\item En conclure de $A$ n'est pas RP.
+	\end{itemize}
+\end{proposition}
+
+Nous avons donc trouver une fonction totale récursive qui n'est pas RP. Nous
+nous étions demandés si le principe de minimalisation permet de construire de
+nouvelles fonctions totales. En raison de l'égalité entre les classes
+$\muRecursiveFunctionSet$ et $\recursiveFunctionsSet$, et de l'existence de la
+fonction d'Ackermann $A$ qui est totale mais pas RP, nous avons que le principe
+permet de construire de nouvelles fonctions totales.
+
