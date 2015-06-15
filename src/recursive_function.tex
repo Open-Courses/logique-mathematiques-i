@@ -41,12 +41,12 @@
 
 %Il existe plusieurs méthodes de calcul:
 
-%\begin{itemize}
+%\begin{enumerate}
 	%\item Machine de Turing
 	%\item $\lambda$-calcul
 	%\item Système de Post
 	%\item Algorithmes de Markov
-%\end{itemize}
+%\end{enumerate}
 
 \section{Notions de base}
 
@@ -106,7 +106,7 @@ langage de programmation.
 Donnons quelques exemples de \textit{fonctions récursives}.
 
 \begin{exemple}
-	\begin{itemize}
+	\begin{enumerate}
 		\item Prenons $A = \naturel \cartprod \naturel$, et $B = \naturel$.
 			Alors l'addition usuelle ($\GSfunction{+}{\naturel \cartprod
 			\naturel}{\naturel}$) et la multiplication usuelle
@@ -120,7 +120,7 @@ Donnons quelques exemples de \textit{fonctions récursives}.
 			sur $X$.
 			Soit $\GSfunction{l}{X^{*}}{\naturel}$ la fonction qui calcule la
 			longueur du mot. Alors $l$ est une fonction récursive.
-	\end{itemize}
+	\end{enumerate}
 \end{exemple}
 
 Prenons maintenant deux fonctions récursives $f$ et $g$. Si nous faisons le
@@ -188,6 +188,35 @@ isomorphes.
 \end{definition}
 
 
+\section{Indices}
+
+Nous avons vu que $\naturel^{*}$, l'ensemble des mots finis sur le langage
+$\naturel$, c'est-à-dire les suites naturelles finies, est un espace car
+$\naturel$ est un espace.
+
+Un élément de $Alg(\naturel^{*}, \naturel)$ est un algorithme dont les entrées
+sont des mots finis (de taille variable sur tous les naturels $k \in \naturel$)
+et dont les sorties sont des naturels.
+
+Nous savons aussi que $Alg(\naturel^{*}, \naturel)$ est isomorphe en tant qu'espace
+à $\naturel$ car tous les espaces sont isomorphes.
+
+Fixons alors un isomorphisme de $\naturel$ dans $Alg(\naturel^{*},
+\naturel)$ tel que $n$ est associé à $I_{n} \in Alg(\naturel^{*}, \naturel)$.
+
+Nous avons défini la notation $[I_{n}]$, pour un algorithme $I_{n}$, qui
+représente la fonction récursive partielle que calcule $I_{n}$.
+
+Par l'isomorphisme, on note $[n]$ à la place de $[I_{n}]$.
+
+Nous pouvons en particulier regarder comment les mots de taille $k$, pour $k$
+fixé, sont calculés par l'algorithme $I_{n}$.
+
+\begin{notation}
+	$[n]^{k}$ est la restriction de $[I_{n}]$ à $\naturel^{k}$.
+\end{notation}
+
+
 \section{Fonctions récursives primitives}
 
 Pour certaines structures, comme les espaces vectoriels ou les groupes, nous
@@ -222,16 +251,24 @@ $\primitiveRecursiveFunctionSet = \recursiveFunctionsSet$ ?}
 
 Commençons par définir 'les vecteurs de bases'.
 
-\begin{itemize}
-	\item \textbf{La fonction annulatrice ou nulle} $NULL : \naturel \rightarrow \naturel : x \rightarrow 0$
+\begin{enumerate}
+	\item \textbf{La fonction annulatrice} ou \textbf{nulle}
+		\begin{equation}
+			NULL : \naturel \rightarrow \naturel : x \rightarrow 0
+		\end{equation}
 		est RP.
-	\item \textbf{La fonction successeur} $SUCC : \naturel \rightarrow \naturel : x \rightarrow x +
-		1$ est RP
-	\item Soit $k \in \naturel^{> 0}$. Soit $1 \leq l \leq k$. \textbf{La
-			fonction de $k$-projection sur la $l$-ième composante} $P_{k, l} :
-			\naturel^{k}
-		\rightarrow \naturel : (x_{1}, \cdots, x_{k}) \rightarrow x_{l}$ est RP.
-\end{itemize}
+	\item \textbf{La fonction successeur}
+		\begin{equation}
+			SUCC : \naturel \rightarrow \naturel : x \rightarrow x + 1
+		\end{equation}
+		est RP
+	\item Soit $k \in \naturel^{> 0}$ et soit $1 \leq l \leq k$. \textbf{La
+		fonction de $k$-projection sur la $l$-ième composante}
+		\begin{equation}
+			P_{k, l} : \naturel^{k} \rightarrow \naturel : (x_{1}, \cdots, x_{k}) \rightarrow x_{l}
+		\end{equation}
+		est RP.
+\end{enumerate}
 
 \vspace{5mm}
 
@@ -239,12 +276,15 @@ Nous allons aussi donner deux procédés permettant, à partir de deux fonctions
 RP, de construires d'autres fonctions RP.
 
 \begin{definition} [Principe de composition]
-	Soient $\GSfunction{F}{\naturel^{l}}{\naturel}$,
+	Soit $\GSfunction{F}{\naturel^{l}}{\naturel}$ et soient
 	$\GSfunction{F_{i}}{\naturel^{k}}{\naturel}$ ($1 \leq i \leq l$) des
 	fonctions RP.
-	Alors la fonction $\GSfunction{H}{\naturel^{k}}{\naturel} : (x_{1}, \cdots,
-	x_{k}) \rightarrow F(F_{1}(x_{1}, \cdots, x_{k}), \cdots, F_{l}(x_{1},
-	\cdots, x_{k}))$ est RP.
+
+	Alors la fonction $H : \naturel^{k} \rightarrow \naturel$ tel que
+	\begin{align}
+		(x_{1}, \cdots, x_{k}) \rightarrow F(F_{1}(x_{1}, \cdots, x_{k}), \cdots, F_{l}(x_{1}, \cdots, x_{k}))
+	\end{align}
+	est RP.
 \end{definition}
 
 \begin{definition} [Principe de récurrence]
@@ -252,11 +292,11 @@ RP, de construires d'autres fonctions RP.
 	$\GSfunction{G}{\naturel^{k + 2}}{\naturel}$ deux fonctions RP.
 	Alors la fonction $\GSfunction{H}{\naturel^{k + 1}}{\naturel}$ définie comme:
 
-	\begin{itemize}
+	\begin{enumerate}
 		\item $H(x_{1}, \cdots, x_{k}, 0) = F(x_{1}, \cdots, x_{k})$
 		\item $H(x_{1}, \cdots, x_{k}, x + 1) = G(x_{1}, \cdots, x_{k}, x,
 			H(x_{1}, \cdots, x_{k}, x))$
-	\end{itemize}
+	\end{enumerate}
 	est RP.
 \end{definition}
 
@@ -294,18 +334,181 @@ est récursive.
 Donnons maintenant quelques exemples de fonctions récursives primitives. Ces
 fonctions devront être totales récursives en particulier.
 
+\begin{exemple} [Addition]
+	La fonction d'addition
+	\begin{equation}
+		ADD : \naturel^{2} \rightarrow \naturel : (x, y) \rightarrow x + y
+	\end{equation}
+	est RP.
+\end{exemple}
+
+\ifdefined\outputproof
+\begin{proof}
+	Posons
+	\begin{equation}
+		G : \naturel^{3} \rightarrow \naturel : (x, y, z) \rightarrow SUCC(P_{3,
+		3}(x, y, z))
+	\end{equation}
+	et $F = P_{1, 1}$.
+
+	On a alors
+	\begin{equation}
+		ADD(x, 0) = F(x) = P_{1, 1}(x) = x
+	\end{equation}
+	et
+	\begin{align}
+		ADD(x, y + 1) &= G(x, y, ADD(x, y)) \\
+		&= SUCC(ADD(x, y)) \\
+		&= (x + y) + 1 \\
+		&= x + (y + 1)
+	\end{align}
+\end{proof}
+\fi
+
+Nous pouvons aussi généraliser l'addition à $n$ termes.
+
+\begin{exemple} [Addition de $n$ termes]
+	La fonction d'addition de $n$ termes
+	\begin{equation}
+		ADD_{n} : \naturel^{n} \rightarrow \naturel : (x_{1}, \cdots, x_{n})
+		\rightarrow \sum_{i = 1}^{n} x_{i}
+	\end{equation}
+	est RP.
+\end{exemple}
+
+\ifdefined\outputproof
+\begin{proof}
+	Il suffit d'appliquer le principe de récurrence sur $ADD$ en remarquant que
+	\begin{equation}
+		ADD_{n}(x_{1}, \cdots, x_{n}) = ADD(x_{1}, ADD(x_{2}, ADD(\cdots,
+		x_{n})))
+	\end{equation}
+\end{proof}
+\fi
+
+\begin{exemple} [Multiplication]
+	La fonction de multiplication
+	\begin{equation}
+		MULT : \naturel^{2} \rightarrow \naturel : (x, y) \rightarrow x . y
+	\end{equation}
+	est RP.
+\end{exemple}
+
+\ifdefined\outputproof
+\begin{proof}
+	Posons
+	\begin{equation}
+		G : \naturel^{3} \rightarrow \naturel : (x, y, z) \rightarrow
+		ADD(NULL(x), ADD(y, z))
+	\end{equation}
+	et $F = NULL$.
+
+	$G$ est bien RP car c'est une composition de fonctions RP.
+
+	On obtient
+	\begin{equation}
+		MULT(x, 0) = NULL(x) = 0
+	\end{equation}
+	et
+	\begin{align}
+		MULT(x, y + 1) & = G(x, y, MULT(x, y)) \\
+		& = ADD(NULL(x), ADD(y, MULT(x, y))) \\
+		& = NULL(x) + ADD(y, MULT(x, y)) \\
+		& = 0 + y + x . y = x . (y + 1)
+	\end{align}
+\end{proof}
+\fi
+
+\begin{exemple} [Projection de l'image d'une fonction]
+	Soit $F : \naturel \rightarrow \naturel$ une fonction RP. Alors
+	\begin{equation}
+		G : \naturel^{2} \rightarrow \naturel : (x, y) \rightarrow G(x,
+		y) = F(x)
+	\end{equation}
+	est RP.
+\end{exemple}
+
+\ifdefined\outputproof
+\begin{proof}
+	On a $G(x, y) = F(P_{2, 1}(x, y))$. Par le principe de composition, $G$ est
+	RP.
+\end{proof}
+\fi
+
+\begin{exemple} [Fonction symétrie]
+	Soit $F : \naturel^{2} \rightarrow \naturel$ une fonction RP. Alors
+	\begin{equation}
+		G : \naturel^{2} \rightarrow \naturel : (x, y) \rightarrow G(x,
+		y) = F(y, x)
+	\end{equation}
+	est RP.
+\end{exemple}
+
+\ifdefined\outputproof
+\begin{proof}
+	On a $G(x, y) = F(P_{2, 2}(x, y), P_{2, 1}(x, y))$. Donc $G$ est RP car
+	composition de fonctions RP.
+\end{proof}
+\fi
+
+\begin{exemple} [Diagonale]
+	Soit $F : \naturel^{2} \rightarrow \naturel$ une fonction RP. Alors
+	\begin{equation}
+		G : \naturel \rightarrow \naturel : x \rightarrow G(x) = F(x, x)
+	\end{equation}
+	est RP.
+\end{exemple}
+
+\ifdefined\outputproof
+\begin{proof}
+	On a $G(x) = F(x, x) = F(P_{2, 1}(x, y), P_{2, 1}(x, y))$. Par le principe
+	de composition, $G$ est RP.
+\end{proof}
+\fi
+
 \begin{exemple}
-	\begin{itemize}
-		\item Exemples donnés par Boffa.
-		\item La fonctions soustraction est RP (si on définit $0 - 1 = 0$)
+	\begin{enumerate}
+		\item La fonction soustraction est RP (si on définit $0 - 1 = 0$)
 		\item La plupart des fonctions que nous utilisons en arithmétique sont
 			RP.
 		\item Les boucles, les conditions et les comparaisons peuvent être
 			implémentées grace aux fonctions RP. (voir Cutland)
-	\end{itemize}
+	\end{enumerate}
 \end{exemple}
 
-Nous souhaitons atteindre but qui est de définir des principes de bases et des
+Généralisons la notion de fonctions RP aux fonctions de $\naturel^{k}$ dans
+$\naturel$.
+
+\begin{definition} [Récursive primitive dans $\naturel^{2}$]
+	Soit $k \in \naturel^{> 1}$.
+	\begin{equation}
+		F : \naturel \rightarrow \naturel^{k} : x \rightarrow (F_{1}(x), \cdots,
+		F_{k}(x))
+	\end{equation}
+	une fonction.
+
+	On dit que $F$ est \textbf{récursive primitive} si pour tout $1 \leq i \leq
+	k$, $F_{i}$ sont récursives primitives.
+
+	Si de plus $F$ est bijectif, on dit que $F$ est \textbf{un RP-isomorphisme}.
+\end{definition}
+
+\begin{definition} [RP isomorphe]
+	Soient $k \in \naturel$. On dit que $\naturel^{k}$ est \textbf{RP-isomorphe à
+	$\naturel$} s'il existe un RP-isomorphisme de $\naturel^{k}$ dans $\naturel$.
+\end{definition}
+
+\begin{proposition}
+	$\naturel^{2}$ est RP-isomorphe à $\naturel$.
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+	% TODO
+\end{proof}
+\fi
+
+Nous souhaitons atteindre notre but qui est de définir des principes de bases et des
 fonctions de base permettant de décrire \textbf{toutes} les fonctions
 récursives.
 
@@ -315,19 +518,22 @@ récursives partielles, nous souhaiterions rajouter un principe qui construit, e
 particulier, les fonctions partielles.
 
 Nous montrerons qu'en fait, toutes les fonctions totales récursives ne sont pas
-RP. On construira la fonction d'Ackermann.
+RP, c'est-à-dire que si nous notons $\recursiveFunctionsSet_{T}$ l'ensemble des
+fonctions récursives totales, on a $\primitiveRecursiveFunctionSet \subsetneq
+\recursiveFunctionsSet_{T}$. On construira la fonction
+d'Ackermann qui montrera cette proposition.
 
 Nous allons introduire de la principe de minimalisation.
 
-\begin{definition} [Principe de minimalisation ou principe M]
+\begin{definition} [Principe de minimalisation ou principe $\mu$]
 	Soit $\GSfunction{F}{\naturel^{k + 1}}{\naturel}$ une fonction RP.
 
 	Alors on définit
 	$G : \naturel^{k} \rightarrow \naturel$ tel que
 
-	$G(x_{1}, \cdots, G_{k})$ = le plus petit $y \in \naturel$ tel que $f(x_{1}, \cdots, x_{k}, y) = 0$
+	$G(x_{1}, \cdots, x_{k})$ = le plus petit $y \in \naturel$ tel que $F(x_{1}, \cdots, x_{k}, y) = 0$
 
-	On note $G(x_{1}, \cdots, x_{k}) = \mu y(F(x_{1}, \cdots, x_{k}, y) = 0)$.
+On note $G(x_{1}, \cdots, x_{k}) = [\mu y](F(x_{1}, \cdots, x_{k}, y) = 0)$.
 
 	$G$ est appelée \textbf{la fonction de minimalisation de $F$.}
 
@@ -341,15 +547,14 @@ Nous allons introduire de la principe de minimalisation.
 	La fonction de minimalisation d'une fonction $RP$ n'est pas nécessairement
 	totale. En effet, on pourrait avoir que $F(x_{1}, \cdots, x_{k}, y)$ ne
 	s'annule jamais. La fonction $\mu$ sera alors indéterminée pour cette entrée
-	là. Un exemple est la fonction
-	successeur.
-	La fonction $\mu$ est donc partielle !
+	là. Un exemple est la fonction successeur (transformée en une fonction à
+	deux paramètres grace à la projection).  La fonction $\mu$ est donc
+	partielle !
 \end{remarque}
 
-\begin{question}
-	Est-ce que si on se restreint aux fonctions $\mu$-récursives, alors la
-	classe $\muRecursiveFunctionSet$ est exactement la classe des fonction
-	primitives récursives $\primitiveRecursiveFunctionSet$ ?
+\begin{question} Est-ce que si on se restreint aux fonctions $\mu$-récursives,
+	alors la classe $\muRecursiveFunctionSet$ est exactement la classe des
+	fonction primitives récursives $\primitiveRecursiveFunctionSet$ ?
 
 	En d'autres termes, est-ce que le principe de minimalisation ne permet que
 	de construire des nouvelles fonctions récursives partielles ?
@@ -364,11 +569,13 @@ Pour le savoir, nous allons passer par un théorème important.
 Nous allons introduire une notation permettant de comparer les fonctions
 récursives.
 
-\begin{definition}
-	Soit $F$ et $G$ deux fonctions récursives de $\naturel^{k}$ dans $\naturel$.
-	On note $F \simeq G$ si $F$ et $G$ ont même domaine et sont égales sur
-	celui-ci, et $F$ est indéterminée en $x$ ssi $G$ l'est aussi. Nous étendons
-	également la notation pour l'évalutation.
+\begin{definition} [Egalité entre fonctions récursives]
+	Soient $F$ et $G$ deux fonctions récursives de $\naturel^{k}$
+	dans $\naturel$.
+
+	On note $F \simeq G$ si $F$ et $G$ ont même domaine et
+	sont égales sur celui-ci, et $F$ est indéterminée en $x$ ssi $G$ l'est
+	aussi. Nous étendons également la notation pour l'évalutation.
 \end{definition}
 
 Bien qu'on ait besoin d'introduire un nouveau principe pour construire des
@@ -426,35 +633,48 @@ récursives. On est alors amené au corollaire suivant:
 
 \section{Opérateurs}
 
-Nous savons que le nombre de programmes est dénombrables: on peut alors les
-numéroter. Posons $\phi$ la fonction qui a $n \in \naturel$ associé $\phi(n) =
-\phi_{n}$ le $n$-ième programme.
+%Nous savons que le nombre de programmes est dénombrables: on peut alors les
+%numéroter. Posons $\phi$ la fonction qui a $n \in \naturel$ associé $\phi(n) =
+%\phi_{n}$ le $n$-ième programme.
 
-Nous allons définir ce qu'est un point fixe pour $\phi$.
+%Nous allons définir ce qu'est un point fixe pour $\phi$.
 
+%\begin{definition}
+	%Soit $F$ une fonction. On dit que $e \in \naturel$ est un point fixe de $F$
+	%si $\phi_{e} \simeq \phi_{F(e)}$, c'est-à-dire que $e$ et $F(e)$ décrivent
+	%le même programme.
+%\end{definition}
 
-\begin{definition}
-	Soit $F$ une fonction. On dit que $e \in \naturel$ est un point fixe de $F$
-	si $\phi_{e} \simeq \phi_{F(e)}$, c'est-à-dire que $e$ et $F(e)$ décrivent
-	le même programme.
+\begin{definition} [Fonction finie]
+	Une fonction est dite \textbf{finie} si son domaine est fini.
 \end{definition}
 
-On note $\mathcal{F}_{k}$ ($k \in \naturel^{> 0}$) les fonctions récursives
-partielle de $\naturel^{k}$ dans $\naturel$.
+\begin{notation}
+	On note $\mathcal{F}_{k}$ ($k \in \naturel^{> 0}$) les fonctions
+	\textbf{partielles} de $\naturel^{k}$ dans $\naturel$.
+\end{notation}
 
-\begin{definition}
+\begin{definition} [Opérateur]
 	Soient $k, l \in \naturel^{> 0}$.
 	\textbf{Un opérateur} est une fonction
-	$\GSfunction{\phi}{\mathcal{F}_{k}}{\mathcal{F}_{l}}$ totale (c'est-à-dire que son domaine de définition est tout
+	\begin{equation}
+		\GSfunction{\phi}{\mathcal{F}_{k}}{\mathcal{F}_{l}}
+	\end{equation}
+totale (c'est-à-dire que son domaine de définition est tout
 	$\mathcal{F}_{k}$).
 
-	On dit que $\phi$ est \textbf{continu} si
+	On dit que $\phi$ est \textbf{un opérateur continu} si
 
 	\begin{equation*}
 		\forall F \in \mathcal{F}_{k}, \phi(F) = \displaystyle \bigcup_{\substack{f \subseteq
 			F \\ f \text{ finie}}} \phi(f)
 	\end{equation*}
 \end{definition}
+
+\begin{remarque}
+	La notion de continuité d'opérateur se fait sur des fonctions. Il faut
+	montrer une égalité de fonctions.
+\end{remarque}
 
 La définition nous permet directement de montrer les propositions suivantes:
 
@@ -464,21 +684,28 @@ La définition nous permet directement de montrer les propositions suivantes:
 
 	Alors:
 
-	\begin{itemize}
+	\begin{enumerate}
 		\item $\forall F_{1} \subseteq F_{2} \in {\mathcal{F}_{k}}$,
 			$\phi(F_{1}) \subseteq \phi(F_{2})$
 		\item $\forall \GSsequence{F}{i}{I}$, $\displaystyle \phi(\bigcup_{i \in I} F_{i}) =
 			\bigcup_{i \in I} \phi(F_{i})$.
-	\end{itemize}
+	\end{enumerate}
 \end{proposition}
 
 \ifdefined\outputproof
 \begin{proof}
-
+	Evident.
 \end{proof}
 \fi
 
-\begin{theorem}
+\begin{definition} [Point fixe]
+	Soit $\gamma : \mathcal{F}_{k} \rightarrow \mathcal{F}_{k}$ un opérateur et
+	soit $F \in \mathcal{F}_{k}$.
+
+	On dit que $F$ est \textbf{un point fixe de $\gamma$} si $\gamma(F) = F$.
+\end{definition}
+
+\begin{theorem} [Théorème du plus petit point fixe]
 	\label{theorem:plus_petit_point_fixe}
 	Soit $\gamma$ est un opérateur continu de $\mathcal{F}_{k}$ dans
 	$\mathcal{F}_{k}$.
@@ -489,8 +716,43 @@ La définition nous permet directement de montrer les propositions suivantes:
 
 \ifdefined\outputproof
 \begin{proof}
+	\begin{enumerate}
+		\item Montrons que $Fix(\gamma)$ est un point fixe. Il faut montrer que
+			\begin{equation}
+				\gamma(\bigcup_{i \in \naturel} \gamma^{i}(\emptyset)) = \bigcup_{i \in
+				\naturel} \gamma^{i}(\emptyset)
+			\end{equation}
 
-\end{proof}
+			Comme $\gamma$ est continu, on a
+			\begin{equation}
+				\gamma(\bigcup_{i \in \naturel} \gamma^{i}(\emptyset)) = \bigcup_{i \in
+				\naturel} \gamma(\gamma^{i}(\emptyset)) = \bigcup_{i \in
+				\naturel} \gamma^{i + 1}(\emptyset)
+			\end{equation}
+			Comme
+			\begin{equation}
+				\bigcup_{i \in \naturel} \gamma^{i}(\emptyset) = \gamma^{0}(\emptyset)
+				\union \bigcup_{i \in \naturel^{> 0}} \gamma^{i}(\emptyset) = \bigcup_{i
+					\in \naturel^{> 0}} \gamma^{i}(\emptyset)
+			\end{equation}
+			on a bien ce qu'on veut.
+
+		\item Maintenant, si $P \in \mathcal{F}_{k}$ est un autre point fixe de $\gamma$ (ie $\gamma(P) =
+			P$), nous devons montrer que $Fix(\gamma) \subseteq P$.
+
+			On a, comme $\gamma$ est continu et que $\emptyset \subseteq P$,
+			$\gamma(\emptyset) \subseteq \gamma(P) = P$.
+
+			Par récurrence, on montre que, pour tout $i \in \naturel$,
+			$\gamma^{i}(\emptyset) \subseteq P$.
+
+			En particulier, on a donc
+			\begin{equation}
+				Fix(\gamma) := \bigcup_{i \in \naturel} \gamma^{i}(\emptyset) \subseteq
+				P
+			\end{equation}
+	\end{enumerate}
+	\end{proof}
 \fi
 
 Avant de donner un exemple, montrons une proposition qui nous servira pour le
@@ -510,36 +772,72 @@ continue. Est-ce le cas pour notre définition sur les opérateurs ?
 
 \ifdefined\outputproof
 \begin{proof}
+	Il faut montrer
+	\begin{equation}
+		\forall F \in \mathcal{F}_{k}, \phi(F) = \displaystyle \bigcup_{\substack{f \subseteq
+			F \\ f \, \text{ finie}}} \phi(f)
+	\end{equation}
+	Soit $F \in \mathcal{F}_{k}$.
+	On a $\phi(F) = A$ car $\phi$ constante et
+	\begin{equation}
+		\bigcup_{\substack{f \subseteq F \\ f \, finie}} \phi(f) =
+		\bigcup_{\substack{f \subseteq F \\ f \, finie}} A = A
+	\end{equation}
+	Donc $\phi$ est continu.
 
+	De plus, on a $\bigcup_{i \in \naturel} \gamma^{i}(\emptyset) = A$ car
+	$\phi$ constante.
 \end{proof}
 \fi
 
-Donnons maintenant un exemple d'opérateur continu, et calculons son point fixe.
 
-Prenons l'opérateur constant $\phi : \mathcal{F}_{2} \rightarrow
-\mathcal{F}_{2}$ de constante $A : \mathcal{F}_{2} \rightarrow \naturel$ définie
-par:
+%Donnons maintenant un exemple d'opérateur continu, et calculons son point fixe.
 
-\begin{itemize}
-	\item $A(0, y) = y + 1$
-	\item $A(x + 1, 0) = A(x, 1)$
-	\item $A(x + 1, y + 1) = A(x, A(x + 1, y))$
-\end{itemize}
+%Prenons l'opérateur constant $\phi : \mathcal{F}_{2} \rightarrow
+%\mathcal{F}_{2}$ de constante $A : \mathcal{F}_{2} \rightarrow \naturel$ définie
+%par:
 
-Cet opérateur est total et continu, et son point fixe est-lui même. Son point
-fixe est même une fonction totale. Cette fonction est très importante.
+%\begin{enumerate}
+	%\item $A(0, y) = y + 1$
+	%\item $A(x + 1, 0) = A(x, 1)$
+	%\item $A(x + 1, y + 1) = A(x, A(x + 1, y))$
+%\end{enumerate}
 
-\begin{definition}
-	\textbf{La fonction d'Ackermann} $A$ est l'unique \textit{fonction totale}
-	de $\naturel^{2}$ dans $\naturel$ définie par
-	\begin{itemize}
-		\item $A(0, y) = y + 1$
-		\item $A(x + 1, 0) = A(x, 1)$
-		\item $A(x + 1, y + 1) = A(x, A(x + 1, y))$
-	\end{itemize}
-\end{definition}
+%Cet opérateur est constante, donc continu et total. De plus, son point fixe $A$
+%est totale car $\gamma^{i}(\emptyset)$ tend vers $\naturel^{2}$ (car $\bigcup_{i
+%\in \naturel} \gamma^{i}(\emptyset)$ est le plus petit point fixe).
 
-Nous souhaitons savoir si $A$ est récursive, et si elle est RP.
+
+%\begin{definition}
+	%\textbf{La fonction d'Ackermann} $A$ est la fonction
+	%de $\naturel^{2}$ dans $\naturel$ définie par
+	%\begin{enumerate}
+		%\item $A(0, y) = y + 1$
+		%\item $A(x + 1, 0) = A(x, 1)$
+		%\item $A(x + 1, y + 1) = A(x, A(x + 1, y))$
+	%\end{enumerate}
+%\end{definition}
+
+%Nous allons montrer que $A$ est de plus récursive, mais n'est pas RP.
+
+\begin{proposition}
+	Soit l'opérateur $\gamma : \mathcal{F}_{2} \rightarrow \mathcal{F}_{2}$
+	tel que, pour tout $F \in \mathcal{F}_{2}$,
+	\begin{enumerate}
+		\item $[\gamma(F)] (0, y) = y + 1$
+		\item $[\gamma(F)] (x + 1, 0) = F(x, 1)$
+		\item $[\gamma(F)] (x + 1, y + 1) = F(x, F(x + 1, y))$
+	\end{enumerate}
+
+	Alors, $\gamma$ est continu.
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+	Nous devons montrer, pour tout $F \in \mathcal{F}_{2}$
+
+\end{proof}
+\fi
 
 \begin{definition}
 	Soit $\phi$ un opérateur de $\mathcal{F}_{k}$ dans $\mathcal{F}_{l}$ où $k,
@@ -558,8 +856,12 @@ d'opérateur récursif.
 	Soient $k, l \in \naturel^{> 0}$.
 	Soit $\GSfunction{\phi}{\mathcal{F}_{k}}{\mathcal{F}_{l}}$ un opérateur.
 
-	Alors $\phi$ est récursif ssi il existe une fonction totale récursive $H(n)$
+	Alors, les assertions suivantes sont équivalentes.
+	\begin{enumerate}
+		\item $\phi$ est récursif.
+		\item il existe une fonction totale récursive $H(n)$
 	tel que $\phi([n]^{(k)}) = H(n)^{(l)}$.
+	\end{enumerate}
 \end{lemma}
 
 \ifdefined\outputproof
@@ -570,7 +872,7 @@ d'opérateur récursif.
 
 On est alors mené au \textit{théorème de récursion de Kleene}:
 
-\begin{theorem}
+\begin{theorem} [Théorème de récursion de Kleene]
 	\label{theorem:kleene_recursion}
 	Soit $k \in \naturel^{> 0}$.
 	Soit $\GSfunction{\phi}{\mathcal{F}_{k}}{\mathcal{F}_{k}}$ un opérateur
@@ -600,7 +902,7 @@ Cependant, nous allons montrer que la fonction d'Ackermann n'est pas RP. Nous
 aurons besoin d'une liste de propriétés de $A$.
 
 \begin{proposition}
-	\begin{itemize}
+	\begin{enumerate}
 		\item $\forall x, y \in \naturel$, $A(x, y) > y$.
 		\item $A$ est strictement croissante en sa deuxième variable.
 		\item $\forall x, y \in \naturel$, $A(x, y + 1) \leq A(x + 1, y)$ (la
@@ -612,7 +914,7 @@ aurons besoin d'une liste de propriétés de $A$.
 			En d'autre terme, toute fonction RP peut être majorée par $A$, ou
 			encore autrement dit, $A$ est plus grande que toute fonction $RP$.
 		\item En conclure de $A$ n'est pas RP.
-	\end{itemize}
+	\end{enumerate}
 \end{proposition}
 
 Nous avons donc trouver une fonction totale récursive qui n'est pas RP. Nous
