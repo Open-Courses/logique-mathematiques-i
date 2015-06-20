@@ -187,6 +187,108 @@ isomorphes.
 	$x$ de $X$, détermine $x \in E$ ou non.
 \end{definition}
 
+\begin{definition}
+	Soient $X$ et $Y$ deux espaces. On note $Algo(X, Y)$ \textbf{l'ensemble des
+	algorithmes d'entrées $X$ et de sorties $Y$}.
+
+	L'ensemble $Algo(X, Y)$ peut être vu comme un sous-ensemble des fonctions
+	partielles $f : X \rightarrow Y$.
+\end{definition}
+
+\begin{definition}
+	Soient $X$, $Y$ deux espaces et $I \in Algo(X, Y)$.
+
+	On note $[I]$ la fonction partielle $f : X \rightarrow Y$ que calcule $I$.
+	On note $[I] = f$ pour dire que $f$ est calculé par l'algorithme $I$.
+
+	Pour $x \in X$, on note $[I](x)$ la sortie que l'algorithme $I$ ressort
+	quand on lui donne l'entrée $x$, c'est-à-dire d'image de $x$ par la fonction
+	$f$ représentée par l'algorithme $I$.
+
+	Remarquons que $[I](x)$ peut être indéterminé si $x$ est une entrée
+	engendrant une boucle infinie dans $I$ par exemple. On dit que $I$ \textbf{ne
+	s'arrête pas pour l'entrée $x$}. C'est pour cela que nous faisons la
+	correspondance avec les fonctions \textbf{partielles}.
+\end{definition}
+
+On obtient évidemment la proposition suivante au vue des définitions
+précédentes.
+
+\begin{proposition}
+	Soient $X$, $Y$ deux espaces et $f : X \rightarrow Y$ une fonction.
+
+	Les assertions suivantes sont équivalentes.
+	\begin{enumerate}
+		\item $f$ est récursive.
+		\item il existe $I \in Algo(X, Y)$ tel que $[I] = f$.
+	\end{enumerate}
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\begin{definition}
+	Soient $A$ un alphabet fini et $A^{*}$ l'ensemble des mots finis sur $A$.
+	Soit $X \subseteq A^{*}$.
+
+	On dit que $X$ est \textbf{récursivement énumérable} s'il existe une
+	fonction totale récursive $f : \naturel \rightarrow A^{*}$ tel que $\Im(f) =
+	X$.
+
+	En d'autres termes, un ensemble récursif est défini comme l'image d'une
+	fonction \textit{totale} récursive.
+\end{definition}
+
+\begin{proposition}
+	Tout ensemble récursive est récursivement énumérable.
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\begin{proposition}
+	Soit $F : A^{*} \rightarrow B^{*}$. Les assertions suivantes sont
+	équivalentes.
+
+	\begin{enumerate}
+		\item $F$ est partielle récursive.
+		\item $Gr(F)$ est récursivement énumérable.
+	\end{enumerate}
+\end{proposition}
+
+\ifdefined\outputproof
+\begin{proof}
+
+\end{proof}
+\fi
+
+\section{Diophantien}
+
+\begin{definition}
+	Soit $R$ une relation $l$-aire.
+	On dit que $R$ est \textbf{une relation diophantienne} s'il existe des
+	polynomes $p_{1}(\vec{a}, \vec{y})$, $p_{2}(\vec{a}, \vec{y})$ tel que
+	\begin{equation}
+		R(\vec{a}) \text{ est vrai} \Leftrightarrow \exists \vec{y}, \,
+		p_{1}(\vec{a}, \vec{y}) = p_{2}(\vec{a}, \vec{y})
+	\end{equation}
+\end{definition}
+
+\begin{definition}
+	Soient $\lang{L}$ un langage et $\theory{T}$ une $\lang{L}$-théorie.
+	Soit $\struct{A}$ un modèle de $\theory{T}$.
+
+	On dit que $\struct{A}$ est \textbf{décidable} s'il existe un algorithme
+	booléaen
+	$A_{\struct{A}}$ tel que $A_{\struct{A}}(\sigma)$ est vrai ssi $\sigma \in
+	Th_{\lang{L}}(\struct{A})$ (ie $\struct{A} \models \sigma$.
+\end{definition}
 
 \section{Indices}
 
@@ -479,7 +581,7 @@ Nous pouvons aussi généraliser l'addition à $n$ termes.
 Généralisons la notion de fonctions RP aux fonctions de $\naturel^{k}$ dans
 $\naturel$.
 
-\begin{definition} [Récursive primitive dans $\naturel^{2}$]
+\begin{definition} [Récursive primitive dans $\naturel^{k}$]
 	Soit $k \in \naturel^{> 1}$.
 	\begin{equation}
 		F : \naturel \rightarrow \naturel^{k} : x \rightarrow (F_{1}(x), \cdots,
@@ -575,7 +677,11 @@ récursives.
 
 	On note $F \simeq G$ si $F$ et $G$ ont même domaine et
 	sont égales sur celui-ci, et $F$ est indéterminée en $x$ ssi $G$ l'est
-	aussi. Nous étendons également la notation pour l'évalutation.
+	aussi.
+
+	Nous étendons également la notation pour l'évalutation, c'est-à-dire que
+	nous noterons $F(\vec{x}) \simeq G(\vec{x})$ si $F(\vec{x}) = G(\vec{x})$ si
+	$F$ et $G$ sont définies en $\vec{x}$ et de même valeur.
 \end{definition}
 
 Bien qu'on ait besoin d'introduire un nouveau principe pour construire des
@@ -593,7 +699,7 @@ principe de minimalisation jouent un role important.
 	tout $(x_{1}, \cdots, x_{k}) \in \naturel^{k}$
 
 	\begin{equation*}
-		F(x_{1}, \cdots, x_{k}) \simeq U(\mu y (T(y, e, x_{1}, \cdots, x_{k})))
+		F(x_{1}, \cdots, x_{k}) \simeq U([\mu y](T(y, e, x_{1}, \cdots, x_{k})))
 	\end{equation*}
 
 	$e$ est appelé \textbf{index} ou \textbf{nombre de Godel}.
@@ -634,14 +740,14 @@ récursives. On est alors amené au corollaire suivant:
 \section{Opérateurs}
 
 %Nous savons que le nombre de programmes est dénombrables: on peut alors les
-%numéroter. Posons $\phi$ la fonction qui a $n \in \naturel$ associé $\phi(n) =
-%\phi_{n}$ le $n$-ième programme.
+%numéroter. Posons $\gamma$ la fonction qui a $n \in \naturel$ associé $\gamma(n) =
+%\gamma_{n}$ le $n$-ième programme.
 
-%Nous allons définir ce qu'est un point fixe pour $\phi$.
+%Nous allons définir ce qu'est un point fixe pour $\gamma$.
 
 %\begin{definition}
 	%Soit $F$ une fonction. On dit que $e \in \naturel$ est un point fixe de $F$
-	%si $\phi_{e} \simeq \phi_{F(e)}$, c'est-à-dire que $e$ et $F(e)$ décrivent
+	%si $\gamma_{e} \simeq \gamma_{F(e)}$, c'est-à-dire que $e$ et $F(e)$ décrivent
 	%le même programme.
 %\end{definition}
 
@@ -658,16 +764,16 @@ récursives. On est alors amené au corollaire suivant:
 	Soient $k, l \in \naturel^{> 0}$.
 	\textbf{Un opérateur} est une fonction
 	\begin{equation}
-		\GSfunction{\phi}{\mathcal{F}_{k}}{\mathcal{F}_{l}}
+		\GSfunction{\gamma}{\mathcal{F}_{k}}{\mathcal{F}_{l}}
 	\end{equation}
 totale (c'est-à-dire que son domaine de définition est tout
 	$\mathcal{F}_{k}$).
 
-	On dit que $\phi$ est \textbf{un opérateur continu} si
+	On dit que $\gamma$ est \textbf{un opérateur continu} si
 
 	\begin{equation*}
-		\forall F \in \mathcal{F}_{k}, \phi(F) = \displaystyle \bigcup_{\substack{f \subseteq
-			F \\ f \text{ finie}}} \phi(f)
+		\forall F \in \mathcal{F}_{k}, \gamma(F) = \displaystyle \bigcup_{\substack{f \subseteq
+			F \\ f \text{ finie}}} \gamma(f)
 	\end{equation*}
 \end{definition}
 
@@ -679,16 +785,16 @@ totale (c'est-à-dire que son domaine de définition est tout
 La définition nous permet directement de montrer les propositions suivantes:
 
 \begin{proposition}
-	Soit $\GSfunction{\phi}{\mathcal{F}_{k}}{\mathcal{F}_{k}}$ un opérateur
+	Soit $\GSfunction{\gamma}{\mathcal{F}_{k}}{\mathcal{F}_{k}}$ un opérateur
 	continu.
 
 	Alors:
 
 	\begin{enumerate}
 		\item $\forall F_{1} \subseteq F_{2} \in {\mathcal{F}_{k}}$,
-			$\phi(F_{1}) \subseteq \phi(F_{2})$
-		\item $\forall \GSsequence{F}{i}{I}$, $\displaystyle \phi(\bigcup_{i \in I} F_{i}) =
-			\bigcup_{i \in I} \phi(F_{i})$.
+			$\gamma(F_{1}) \subseteq \gamma(F_{2})$
+		\item $\forall \GSsequence{F}{i}{I}$, $\displaystyle \gamma(\bigcup_{i \in I} F_{i}) =
+			\bigcup_{i \in I} \gamma(F_{i})$.
 	\end{enumerate}
 \end{proposition}
 
@@ -763,37 +869,37 @@ continue. Est-ce le cas pour notre définition sur les opérateurs ?
 
 \begin{proposition}
 	Soient $k, l > 0$ deux naturels.
-	Soit $\GSfunction{\phi}{\mathcal{F}_{k}}{\mathcal{F}_{l}}$ un opérateur
-	constant, c'est-à-dire que pour tout $F \in \mathcal{F}_{k}$, $\phi(F) = A$
+	Soit $\GSfunction{\gamma}{\mathcal{F}_{k}}{\mathcal{F}_{l}}$ un opérateur
+	constant, c'est-à-dire que pour tout $F \in \mathcal{F}_{k}$, $\gamma(F) = A$
 	où $A \in \mathcal{F}_{l}$.
 
-	Alors $\phi$ est continue. De plus, $Fix(\phi) = A$.
+	Alors $\gamma$ est continue. De plus, $Fix(\gamma) = A$.
 \end{proposition}
 
 \ifdefined\outputproof
 \begin{proof}
 	Il faut montrer
 	\begin{equation}
-		\forall F \in \mathcal{F}_{k}, \phi(F) = \displaystyle \bigcup_{\substack{f \subseteq
-			F \\ f \, \text{ finie}}} \phi(f)
+		\forall F \in \mathcal{F}_{k}, \gamma(F) = \displaystyle \bigcup_{\substack{f \subseteq
+			F \\ f \, \text{ finie}}} \gamma(f)
 	\end{equation}
 	Soit $F \in \mathcal{F}_{k}$.
-	On a $\phi(F) = A$ car $\phi$ constante et
+	On a $\gamma(F) = A$ car $\gamma$ constante et
 	\begin{equation}
-		\bigcup_{\substack{f \subseteq F \\ f \, finie}} \phi(f) =
+		\bigcup_{\substack{f \subseteq F \\ f \, finie}} \gamma(f) =
 		\bigcup_{\substack{f \subseteq F \\ f \, finie}} A = A
 	\end{equation}
-	Donc $\phi$ est continu.
+	Donc $\gamma$ est continu.
 
 	De plus, on a $\bigcup_{i \in \naturel} \gamma^{i}(\emptyset) = A$ car
-	$\phi$ constante.
+	$\gamma$ constante.
 \end{proof}
 \fi
 
 
 %Donnons maintenant un exemple d'opérateur continu, et calculons son point fixe.
 
-%Prenons l'opérateur constant $\phi : \mathcal{F}_{2} \rightarrow
+%Prenons l'opérateur constant $\gamma : \mathcal{F}_{2} \rightarrow
 %\mathcal{F}_{2}$ de constante $A : \mathcal{F}_{2} \rightarrow \naturel$ définie
 %par:
 
@@ -821,52 +927,129 @@ continue. Est-ce le cas pour notre définition sur les opérateurs ?
 %Nous allons montrer que $A$ est de plus récursive, mais n'est pas RP.
 
 \begin{proposition}
-	Soit l'opérateur $\gamma : \mathcal{F}_{2} \rightarrow \mathcal{F}_{2}$
+	\label{proposition:operateur_ackermann}
+	Soit l'opérateur $\mathcal{A} : \mathcal{F}_{2} \rightarrow \mathcal{F}_{2}$
 	tel que, pour tout $F \in \mathcal{F}_{2}$,
 	\begin{enumerate}
-		\item $[\gamma(F)] (0, y) = y + 1$
-		\item $[\gamma(F)] (x + 1, 0) = F(x, 1)$
-		\item $[\gamma(F)] (x + 1, y + 1) = F(x, F(x + 1, y))$
+		\item $[\mathcal{A}(F)] (0, y) = y + 1$
+		\item $[\mathcal{A}(F)] (x + 1, 0) = F(x, 1)$
+		\item $[\mathcal{A}(F)] (x + 1, y + 1) = F(x, F(x + 1, y))$
 	\end{enumerate}
 
-	Alors, $\gamma$ est continu.
+	Alors, $\mathcal{A}$ est continu.
 \end{proposition}
+
 
 \ifdefined\outputproof
 \begin{proof}
-	Nous devons montrer, pour tout $F \in \mathcal{F}_{2}$
+	Nous devons montrer, pour tout $F \in \mathcal{F}_{2}$, on a
+	\begin{equation}
+		\mathcal{A}(F) = \displaystyle \bigcup_{\substack{f \subseteq
+			F \\ f \text{ finie}}} \mathcal{A}(f)
+	\end{equation}
 
+	\begin{enumerate}
+		\item Soit $(0, y)$. On a bien qu'il existe $f$ finie et $f \subseteq
+			F$ tel que $\mathcal{A}(f)(0, y) = y + 1$ car pour tout $f \in
+			\mathcal{F}_{2}$, $\mathcal{A}(f)(0, y) = y + 1$.
+		\item Soit $(x + 1, 0)$. On doit avoir un $f \subseteq F$ finie tel que
+			$\mathcal{A}(f)(x + 1, 0) = \mathcal{A}(F)(x + 1, 0)$. On a $\mathcal{A}(f)(x + 1,
+			0) = f(x, 1)$ et $\mathcal{A}(F)(x + 1, 0) = F(x, 1)$.
+			Il faut donc $f$ tel que $f(x, 1) = F(x, 1)$ --> OK.
+		\item idem
+	\end{enumerate}
 \end{proof}
 \fi
 
+Comme $\mathcal{A}$ est continu, $A := \union_{i \in \naturel}
+\mathcal{A}^{i}(\emptyset)$ est son plus petit point fixe et $A : \naturel^{2}
+\rightarrow \naturel$.
+
+Comme $A$ est un point fixe, $A$ vérifie
+\begin{enumerate}
+	\item $A(0, y) = y + 1$
+	\item $A(x + 1, 0) = A(x, 1)$
+	\item $A(x + 1, y + 1) = A(x, A(x + 1, y))$
+\end{enumerate}
+
+De plus, $A$ est une fonction totale (cela implique qu'elle est unique car c'est
+le plus petit point fixe).
+
+Montrons que $A$ est totale.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% TODO: montrer que la fonction est totale.
+\ifdefined\outputproof
+\begin{proof}
+	On a que la suite des domaines de $\union_{i = 0}^{n}
+	\mathcal{A}^{i}(\emptyset)$ tend vers $\naturel^{2}$ car si la suite est
+	ultimement constante, on a pour un $k \in \naturel$ et en posant $F_{n} =
+	\union_{i = 0}^{n} \mathcal{A}^{i}(\emptyset)$
+
+	\begin{equation}
+		dom(F_{k}) = dom(F_{k + 1})
+	\end{equation}
+\end{proof}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{definition}
-	Soit $\phi$ un opérateur de $\mathcal{F}_{k}$ dans $\mathcal{F}_{l}$ où $k,
+	\textbf{La fonction d'Ackermann} est l'unique fonction totale $A :
+	\naturel^{2} \rightarrow \naturel$ tel que
+	\begin{enumerate}
+		\item $A(0, y) = y + 1$
+		\item $A(x + 1, 0) = A(x, 1)$
+		\item $A(x + 1, y + 1) = A(x, A(x + 1, y))$
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	Soit $\gamma$ un opérateur de $\mathcal{F}_{k}$ dans $\mathcal{F}_{l}$ où $k,
 	l$ sont deux entiers strictement positifs.
 
-	On dit que $\phi$ est \textbf{récursif} s'il est continu et si pour toute fonction finie $f \in
-	\mathcal{F}_{k}$, et pour tout $(x_{1}, \cdots, x_{k})$, l'application de
-	$\mathcal{F}_{l}$ obtenue en évaluant $\phi(f)$ en $(x_{1}, \cdots, x_{k})$ (ie
-	$\phi(f)(x_{1}, \cdots, x_{k})$) est récursive.
+	On dit que $\gamma$ est \textbf{récursif} s'il est continu et si pour toute fonction finie $f \in
+	\mathcal{F}_{k}$, l'application de
+	$\mathcal{F}_{l}$ obtenue en évaluant $\gamma(f)$ est récursive.
 \end{definition}
+
+Remarquons que la définition d'opérateur récursif implique immédiatement que
+pour toute fonction $F \in \mathcal{F}_{k}$, $\gamma(F)$ est récursif. En effet,
+comme $\gamma$ est un opérateur récursif, en particulier il est continu. Donc
+pour calculer $\gamma(F)$, il suffit de connaître $\gamma(F)$ sur ses restrictions
+finies, qui sont récursives.
+
+Rappelons que précédemment, nous avons fixé un isomorphisme entre $\naturel$ et
+$Algo(\naturel^{*}, \naturel)$ et que nous notons, pour $n \in \naturel$,
+$[n]^{(l)}$ la restriction à $\naturel^{l}$ de la fonction récursive calculée
+par l'algo $n \in Algo(\naturel^{*}, \naturel)$.
 
 Donnons un lemme qui permettra de mieux travailler avec la définition
 d'opérateur récursif.
 
 \begin{lemma}
 	Soient $k, l \in \naturel^{> 0}$.
-	Soit $\GSfunction{\phi}{\mathcal{F}_{k}}{\mathcal{F}_{l}}$ un opérateur.
+	Soit $\GSfunction{\gamma}{\mathcal{F}_{k}}{\mathcal{F}_{l}}$ un opérateur.
 
 	Alors, les assertions suivantes sont équivalentes.
 	\begin{enumerate}
-		\item $\phi$ est récursif.
-		\item il existe une fonction totale récursive $H(n)$
-	tel que $\phi([n]^{(k)}) = H(n)^{(l)}$.
+		\item \label{statement:phi_recursif} $\gamma$ est récursif.
+		\item \label{statement:fonction_hn} il existe une fonction totale récursive $H : \naturel \rightarrow
+			\naturel$ tel que pour tout $n \in \naturel$, $\gamma([n]^{(k)}) =
+			[H(n)]^{(l)}$.
 	\end{enumerate}
 \end{lemma}
 
 \ifdefined\outputproof
 \begin{proof}
+	$(\ref{statement:phi_recursif} \implies \ref{statement:fonction_hn})$ Par la
+	remarque, comme $\gamma$ est un opérateur récursif, $\gamma([n]^{(k)})$ est une
+	fonction récursive de $\naturel^{l}$ dans $\naturel$. Il existe donc un $m
+	\in \naturel$ tel que $\gamma([n]^{(k)}) = [m]^{(l)}$. On pose alors $H(n) =
+	m$.
 
+	$(\ref{statement:fonction_hn} \implies \ref{statement:phi_recursif})$ Il
+	nous suffit de montrer que pour toute fonction $f$ finie, on a $\gamma(f)$ qui
+	est récursif.
+	%TODO: Montrer que 2 implique 1
 \end{proof}
 \fi
 
@@ -875,17 +1058,33 @@ On est alors mené au \textit{théorème de récursion de Kleene}:
 \begin{theorem} [Théorème de récursion de Kleene]
 	\label{theorem:kleene_recursion}
 	Soit $k \in \naturel^{> 0}$.
-	Soit $\GSfunction{\phi}{\mathcal{F}_{k}}{\mathcal{F}_{k}}$ un opérateur
+	Soit $\GSfunction{\gamma}{\mathcal{F}_{k}}{\mathcal{F}_{k}}$ un opérateur
 	récursif.
 
-	Alors le plus petit point fixe $Fix(\phi)$ de $\phi$ est une fonction partielle récursive.
+	Alors le plus petit point fixe $Fix(\gamma)$ de $\gamma$ est une fonction partielle récursive.
 \end{theorem}
 
 \ifdefined\outputproof
 \begin{proof}
-
+	% TODO: comprendre la preuve.
+	On a $Fix(\gamma) = \union_{i \in \naturel} \gamma^{i}(\emptyset)$.
+	En effet, le lemme montre que $\gamma^{i}(\emptyset) = [H^{i}(n_{0})]^{(k)}$
+	où $[n_{0}]^{(k)}$ où $[n_{0}]^{(k)} = \emptyset$.
 \end{proof}
 \fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO: Montrer que l'opérateur d'Ackermann est récursif.
+Remarquons d'abord que l'opérateur $\mathcal{A}$ est
+récursif, c'est-à-dire que pour chaque $f$ finie, $\gamma(f)$ est récursif.
+
+En effet, on a
+\begin{enumerate}
+	\item $\gamma(f)(0, y) = y + 1$.
+	\item $\gamma(f)(x + 1, 0) = f(x, 1)$.
+	\item $\gamma(f)(x + 1, y + 1) = f(x, f(x + 1, y))$.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{corollary}
 	\label{corollary:ackermann_total_recursive}
@@ -894,7 +1093,8 @@ On est alors mené au \textit{théorème de récursion de Kleene}:
 
 \ifdefined\outputproof
 \begin{proof}
-
+	Evident car on a montré que $A$ était totale, et par
+	\ref{theorem:kleene_recursion}, c'est une fonction récursive.
 \end{proof}
 \fi
 
@@ -903,24 +1103,111 @@ aurons besoin d'une liste de propriétés de $A$.
 
 \begin{proposition}
 	\begin{enumerate}
-		\item $\forall x, y \in \naturel$, $A(x, y) > y$.
+		\item Pour tout $x, y \in \naturel$,
+			\begin{equation}
+				A(x, y) > y
+			\end{equation}
 		\item $A$ est strictement croissante en sa deuxième variable.
-		\item $\forall x, y \in \naturel$, $A(x, y + 1) \leq A(x + 1, y)$ (la
-			fonction grandit plus vite en sa première variable).
+		\item Pour tout $x, y \in \naturel$,
+			\begin{equation}
+				A(x, y + 1) \leq A(x + 1, y)
+			\end{equation}
+			En d'autres termes, la fonction grandit plus vite en sa première variable
 		\item $A$ est strictement croissante en sa première variable.
 		\item Pour tout $k > 0$ et pour toute fonction
-			$\GSfunction{F}{\naturel^{k}}{\naturel}$ RP, il existe $m \in \naturel$
-			tel que $F(x_{1}, \cdots, x_{k}) < A(m, max(x_{1}, \cdots, x_{k}))$.
-			En d'autre terme, toute fonction RP peut être majorée par $A$, ou
-			encore autrement dit, $A$ est plus grande que toute fonction $RP$.
+			\begin{equation}
+				\GSfunction{F}{\naturel^{k}}{\naturel}
+			\end{equation}
+			RP, il existe $m \in \naturel$
+			tel que pour tout $x_{1}, \cdots, x_{k}$,
+			\begin{equation}
+				F(x_{1}, \cdots, x_{k}) < A(m, max(x_{1}, \cdots, x_{k}))
+			\end{equation}
+			En d'autres termes, toute fonction RP peut être majorée par $A$, ou
+			encore autrement dit, $A$ est plus grande et grandit plus vite que
+			toute fonction $RP$.
 		\item En conclure de $A$ n'est pas RP.
 	\end{enumerate}
 \end{proposition}
 
+\ifdefined\outputproof
+\begin{proof}
+	\begin{enumerate}
+		\item Pour $x = 0$, on a
+			\begin{equation}
+				A(0, y) = y + 1 > y
+			\end{equation}
+
+			Montrons maintenant que $A(x + 1, y) > y$ en ayant supposé que $A(x,
+			y) > y$.
+
+			On a 
+			\begin{align}
+				&& A(x + 1, y) & = A(x, A(x + 1, y - 1)) && \\
+				&& & > A(x + 1, y - 1) &&
+			\end{align}
+			par hypothèse de récurrence. Donc,
+			\begin{equation}
+				A(x + 1, y) \geq A(x + 1, y - 1) + 1
+			\end{equation}
+			On montre alors qu'en réitérant le processus et en utilisant
+			\begin{equation}
+				A(x + 1, 0) = A(x, 1) > 1
+			\end{equation}
+			que
+			\begin{equation}
+				A(x + 1, y) \geq 1 + y > y
+			\end{equation}
+		\item On a 
+			\begin{align}
+				&& A(x_{0}, y + 1) & = A(x_{0} - 1, A(x_{0}, y)) && \\
+				&& & > A(x_{0}, y) && \text{par l'étape précédente} \\
+			\end{align}
+		\item Montrons que
+			\begin{equation}
+				A(x + 1, y + 1) \geq A(x, y + 2)
+			\end{equation}
+			On a
+			\begin{equation}
+				A(x + 1, y + 1) = A(x, A(x + 1, y))
+			\end{equation}
+			Si nous montrons que
+			\begin{equation}
+				A(x + 1, y) \geq y + 2
+			\end{equation}
+			on aura fini. En effet, comme $A$ est croissant en la deuxième
+			variable, on a
+			\begin{equation}
+				A(x, y + 2) \leq A(x, A(x + 1, y)) = A(x + 1, y + 1)
+			\end{equation}
+
+			On sait que
+			\begin{align}
+				&& A(x + 1, y) & \geq A(x + 1, 0) + y && \text{lemme} \\
+				&& & = A(x, 1) + y && \text{définition} \\
+				&& & > 1 + y && \text{point précédent} \\
+				&& & \geq 2 + y &&
+			\end{align}
+		\item On a
+			\begin{align}
+				&& A(x, y) & \leq A(x + 1, y - 1) && \text{point précédent} \\
+				&& & < A(x + 1, y) && \text{stricte croissance en $y$}
+			\end{align}
+		\item Voir feuilles
+		\item Supposons que $A$ soit $RP$. Alors il existe $m > 0$ tel que pour
+			tout $x, y$, $A(x, y) < A(m, max(x, y))$. En particulier, avec $x =
+			y = m$, on a
+			l'existence d'un $m > 0$ tel que $A(m, m) < A(m, m)$ ce qui n'est
+			pas possible.
+	\end{enumerate}
+\end{proof}
+\fi
+
 Nous avons donc trouver une fonction totale récursive qui n'est pas RP. Nous
 nous étions demandés si le principe de minimalisation permet de construire de
-nouvelles fonctions totales. En raison de l'égalité entre les classes
+nouvelles fonctions totales.
+
+En raison de l'égalité entre les classes
 $\muRecursiveFunctionSet$ et $\recursiveFunctionsSet$, et de l'existence de la
 fonction d'Ackermann $A$ qui est totale mais pas RP, nous avons que le principe
 permet de construire de nouvelles fonctions totales.
-

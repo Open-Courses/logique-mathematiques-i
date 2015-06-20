@@ -3,3 +3,7 @@ Recursives functions wikipedia : http://en.wikipedia.org/wiki/Primitive_recursiv
 	nombres de Godel.
 
 Lire l'article d'Ackermann sur sa fonction
+
+Définir modèle diophantien --> chaque relations est diophantienne.
+Parler d'espace calculable à la place d'espace, et alors préciser l'algorithme.
+Définir une notion de "classe" entre les algorithmes sur un même ensemble.
